@@ -3,8 +3,21 @@ const requestedView = new URLSearchParams(window.location.search).get("view");
 
 if (requestedView === "overhead") {
   workshop.dataset.view = "overhead";
+  delete workshop.dataset.render;
 } else if (requestedView === "tag") {
   delete workshop.dataset.view;
+  delete workshop.dataset.render;
+}
+
+if (workshop.dataset.render === "geometry" && "IntersectionObserver" in window) {
+  const exampleLink = workshop.querySelector(".box-example");
+  const reveal = new IntersectionObserver(([entry], observer) => {
+    if (entry.intersectionRatio >= 0.4) {
+      workshop.dataset.reveal = "";
+      observer.disconnect();
+    }
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.4 });
+  reveal.observe(exampleLink);
 }
 
 const copyButton = document.querySelector("#copy-prompt");

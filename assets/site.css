@@ -201,15 +201,40 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 }
 
 .hero-copy { container-type: inline-size; }
-.hero-copy::before {
-  content: "";
-  display: block;
-  width: min(100%, 10rem);
-  height: 0.36rem;
-  margin-bottom: 0.9rem;
-  border-bottom: 1px solid #bdd0fe9e;
-  background: repeating-linear-gradient(90deg, #bdd0fe9e 0 1px, transparent 1px var(--grid-unit));
+.kit-ruler {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(100%, 26rem);
+  margin-bottom: 0.55rem;
+  border-top: 1px solid #bdd0feba;
 }
+
+.kit-ruler a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.37rem;
+  min-height: 2.75rem;
+  color: var(--white);
+  font: 650 0.8125rem/1.2 var(--mono);
+  text-decoration: none;
+}
+
+.kit-ruler a::before {
+  content: "";
+  position: absolute;
+  inset: -0.55rem 0 auto;
+  height: 0.5rem;
+  background:
+    linear-gradient(90deg, var(--accent) 1px, transparent 1px),
+    repeating-linear-gradient(90deg, #bdd0fe82 0 1px, transparent 1px 16.6667%)
+      left bottom / 100% 0.28rem no-repeat;
+}
+
+.kit-ruler a:last-child::before { border-right: 1px solid var(--accent); }
+.kit-ruler a span { color: var(--accent); }
+.kit-ruler a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+#draft-profile, .instructions li[id] { scroll-margin-block-start: 1.5rem; }
 
 .kit-label {
   margin-bottom: 0.85rem;
@@ -249,6 +274,8 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 .workshop-example { padding-inline-start: clamp(0rem, 3vw, 3rem); }
 
 .box-example { display: none; }
+.box-scene { display: contents; }
+.box-mobile-action { display: none; }
 .workshop-book { display: none; }
 .workshop[data-view] .example { display: none; }
 .workshop[data-view="overhead"] .box-example {
@@ -283,8 +310,12 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 .workshop[data-view="depth"] .hero-copy { pointer-events: auto; }
 .workshop[data-view="depth"] .workshop-example { min-height: clamp(24rem, calc(100svh - 13.5rem), 36rem); }
 
-@media (width > 49rem) {
+@media (width > 60rem) {
   .workshop[data-view="depth"] .hero-inner { padding-block: clamp(2rem, 5.2vh, 4.75rem); }
+  .workshop[data-render="geometry"] .workshop-example {
+    /* Keep enough vertical room for the stamp when the photo fills a wide window. */
+    height: max(0px, calc(31vw - 2 * clamp(2rem, 5.2vh, 4.75rem)));
+  }
 }
 
 .workshop[data-view="depth"] .box-example {
@@ -452,6 +483,45 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 .workshop[data-view="depth"] .box-example:hover .box-label strong { text-decoration: underline 0.08em; }
 .workshop[data-view="depth"] .box-example:focus-visible strong { outline: 2px solid currentColor; outline-offset: 0.22em; }
 
+.workshop[data-render="geometry"] .box-label {
+  width: max(100cqw, 184cqh);
+  background-image: url("./profile-kit-physical.webp");
+}
+
+/* The cover and ink are already rendered on their surfaces in this image. */
+.workshop[data-render="geometry"] :is(.workshop-book, .box-lid) {
+  display: none;
+}
+
+.workshop[data-render="geometry"] .box-example:focus-visible .box-label::after {
+  position: absolute;
+  inset: 12% 26% 6% 30%;
+  content: "";
+  border: 3px solid #c1d5ff;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .workshop[data-reveal] .box-label {
+    transform-origin: 56% 48%;
+    animation: workshop-reveal 1s steps(6, end) both;
+  }
+
+  @keyframes workshop-reveal {
+    0%, 15% {
+      transform: translateX(-48.3%) scale(1.035);
+      filter: brightness(0.79) saturate(0.88);
+    }
+    64% {
+      transform: translateX(-49.7%) scale(1.009);
+      filter: brightness(0.96) saturate(0.98);
+    }
+    100% {
+      transform: translateX(-50%);
+      filter: brightness(1) saturate(1);
+    }
+  }
+}
+
 .example {
   display: block;
   position: relative;
@@ -617,7 +687,7 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 .footer-support { gap: 0.55rem; border-color: #9ab3fa; color: var(--ink); }
 .footer-support:hover { background: #162f91; }
 
-@media (max-width: 49rem) {
+@media (max-width: 60rem) {
   .hero-inner, .reader-path, .make-section { grid-template-columns: minmax(0, 1fr); }
   .workbench, .blueprint { display: none; }
   .hero-inner { padding-bottom: 0; }
@@ -657,6 +727,38 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
   }
   .workshop[data-view="depth"] .box-label { left: 50%; }
   .workshop[data-view="depth"] .box-label-print { top: 58%; }
+  .workshop[data-render="geometry"] .box-example {
+    height: auto;
+    container-type: normal;
+    clip-path: none;
+  }
+  .workshop[data-render="geometry"] .box-scene {
+    --photo-height: max(clamp(23rem, 116vw, 37rem), calc(100vw * 2 / 3));
+    display: block;
+    position: relative;
+    height: calc(var(--photo-height) * 0.815);
+    container-type: size;
+    overflow: hidden;
+  }
+  .workshop[data-render="geometry"] .box-label {
+    /* Keep the book at its original scale as the shorter frame crops the lid. */
+    width: max(100cqw, calc(var(--photo-height) * 1.5));
+  }
+  .workshop[data-render="geometry"] .box-mobile-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3rem;
+    padding-inline: clamp(1.125rem, 4vw, 2rem);
+    border-top: 1px solid var(--line);
+    background: var(--navy);
+    color: var(--white);
+    font: 700 1rem/1.25 var(--mono);
+  }
+  .workshop[data-render="geometry"] .box-example:focus-visible .box-mobile-action {
+    outline: 2px solid var(--accent);
+    outline-offset: -4px;
+  }
 }
 
 @media (max-width: 32rem) {
@@ -665,6 +767,14 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
   .site-nav { gap: 0.25rem 1rem; }
   .credit-group { gap: 0 0.4rem; }
   .credit-brand { font-size: 0.8rem; }
+  .kit-ruler a {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.12rem;
+    font-size: clamp(0.75rem, 3.35vw, 0.8125rem);
+  }
+  .kit-ruler a span { font-size: 0.72rem; }
   .hero-inner { padding-top: 2.35rem; }
   .example { width: min(79%, 17.5rem); }
   .prompt-panel pre, .prompt-intro { padding-inline: 0.95rem; }
