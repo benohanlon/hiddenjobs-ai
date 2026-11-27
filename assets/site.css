@@ -883,14 +883,15 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 .footer-inner { padding-block: 1.5rem; color: var(--secondary); font-size: 0.94rem; }
 .footer-inner h2 { margin-bottom: 0.2rem; color: var(--ink); font-size: 1.125rem; }
 .newsletter-signup { grid-area: signup; width: min(100%, 29rem); }
+.newsletter-embed { overflow: hidden; border-radius: 0.25rem; background: var(--white); }
 .newsletter-signup iframe {
   display: block;
   width: 100%;
   border: 0;
   background: transparent;
   color-scheme: light;
-  /* Neutralise the dark teal while retaining Substack's orange controls. */
-  filter: brightness(.9) contrast(1.5) contrast(.72) brightness(1.12) saturate(.97);
+  /* Invert the embedded form's dark palette and rotate the accent back to orange. */
+  filter: brightness(.8) contrast(1.45) invert(1) hue-rotate(180deg) brightness(.98) contrast(1.1) saturate(.94);
 }
 .newsletter-signup > a { display: inline-block; margin-top: 0.45rem; }
 .more-copy { grid-area: copy; max-width: 34rem; }
