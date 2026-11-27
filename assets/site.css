@@ -887,8 +887,10 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
   display: block;
   width: 100%;
   border: 0;
-  background: var(--navy);
+  background: transparent;
   color-scheme: light;
+  /* Neutralise the dark teal while retaining Substack's orange controls. */
+  filter: brightness(.9) contrast(1.5) contrast(.72) brightness(1.12) saturate(.97);
 }
 .newsletter-signup > a { display: inline-block; margin-top: 0.45rem; }
 .more-copy { grid-area: copy; max-width: 34rem; }
