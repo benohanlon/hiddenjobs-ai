@@ -33,13 +33,12 @@ if (workshop.dataset.render === "geometry") {
     const viewport = window.innerHeight;
     const distance = frame ? viewport - frame.top : window.scrollY;
     const travel = frame ? viewport : Math.min(viewport, 360);
-    const amplitude = frame ? Math.min(36, frame.height * 0.09) : 18;
+    const amplitude = frame ? Math.min(36, frame.height * 0.075) : 18;
     const progress = Math.min(1, Math.max(0, distance / travel));
-    const offset = amplitude * progress;
-    const drift = `${offset.toFixed(2)}px`;
-    if (example.style.getPropertyValue("--workbench-drift") !== drift) {
-      example.style.setProperty("--workbench-drift", drift);
-    }
+    const eased = progress * progress * (3 - 2 * progress);
+    const zoom = 1 + (frame ? 0.055 : 0.03) * eased;
+    example.style.setProperty("--workbench-drift", `${(amplitude * eased).toFixed(2)}px`);
+    example.style.setProperty("--workbench-zoom", zoom.toFixed(4));
   }
 
   function queueWorkbenchFrame() {
@@ -57,6 +56,7 @@ if (workshop.dataset.render === "geometry") {
       window.cancelAnimationFrame(pendingFrame);
       pendingFrame = 0;
       example.style.removeProperty("--workbench-drift");
+      example.style.removeProperty("--workbench-zoom");
     }
   }
 
