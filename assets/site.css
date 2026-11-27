@@ -489,12 +489,12 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 .workshop[data-view="depth"] .box-example:focus-visible strong { outline: 2px solid currentColor; outline-offset: 0.22em; }
 
 .workshop[data-render="geometry"] .box-label {
-  width: max(100cqw, 184cqh);
-  background-image: url("./profile-kit-physical.webp");
+  width: max(100cqw, 151cqh);
+  background-image: url("./profile-kit-parcel.webp");
 }
 
-/* The cover and ink are already rendered on their surfaces in this image. */
-.workshop[data-render="geometry"] :is(.workshop-book, .box-lid) {
+/* This render includes the cover, stamp and shelf props. */
+.workshop[data-render="geometry"] :is(.workshop-book, .box-lid, .shelf-badge) {
   display: none;
 }
 
