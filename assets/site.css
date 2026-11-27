@@ -886,8 +886,9 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 .newsletter-signup iframe {
   display: block;
   width: 100%;
-  border: 1px solid var(--cut-wall-light);
-  background: var(--white);
+  border: 0;
+  background: var(--navy);
+  color-scheme: light;
 }
 .newsletter-signup > a { display: inline-block; margin-top: 0.45rem; }
 .more-copy { grid-area: copy; max-width: 34rem; }
