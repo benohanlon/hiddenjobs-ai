@@ -883,15 +883,15 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 .footer-inner { padding-block: 1.5rem; color: var(--secondary); font-size: 0.94rem; }
 .footer-inner h2 { margin-bottom: 0.2rem; color: var(--ink); font-size: 1.125rem; }
 .newsletter-signup { grid-area: signup; width: min(100%, 29rem); }
-.newsletter-embed { overflow: hidden; border-radius: 0.25rem; background: var(--white); }
+.newsletter-embed { overflow: hidden; border-radius: 0.25rem; background: var(--accent); }
 .newsletter-signup iframe {
   display: block;
   width: 100%;
   border: 0;
   background: transparent;
   color-scheme: light;
-  /* Invert the embedded form's dark palette and rotate the accent back to orange. */
-  filter: brightness(.8) contrast(1.45) invert(1) hue-rotate(180deg) brightness(.98) contrast(1.1) saturate(.94);
+  /* Lighten the field and keep the orange controls and dark text readable on the blue panel. */
+  filter: brightness(.92) contrast(2.28) invert(1) hue-rotate(177deg) saturate(.87);
 }
 .newsletter-signup > a { display: inline-block; margin-top: 0.45rem; }
 .more-copy { grid-area: copy; max-width: 34rem; }
