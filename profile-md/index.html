@@ -170,7 +170,7 @@
         <a class="button button-primary starter-button" href="https://github.com/benohanlon/profile-md-template">Use the GitHub starter</a>
         <ol class="instructions">
           <li><strong>Copy.</strong> Choose <strong>Use this template</strong> on GitHub and open your copy with an AI that can edit its files.</li>
-          <li id="prompt-profile"><strong>Prompt.</strong> Give your AI your CV and work samples, then paste the <a href="https://github.com/benohanlon/profile-md-template#make-your-own">starter’s rebuild prompt</a>.</li>
+          <li id="prompt-profile"><strong>Prompt.</strong> Give your AI your CV and work samples, then <a href="#draft-profile">copy the profile prompt</a> into your AI.</li>
           <li id="assemble-profile"><strong>Assemble.</strong> Review the Markdown and preview the generated pages. Try a real question and follow the answer to your evidence.</li>
           <li id="publish-profile"><strong>Share.</strong> Share the Markdown directly or <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site">publish the site with GitHub Pages</a> and send the link. Before publishing, choose what to make public and set the terms for your own material in your README.</li>
         </ol>
@@ -182,15 +182,15 @@
       <div class="prompt-panel cut-band" id="draft-profile" aria-labelledby="prompt-heading">
         <span class="cut-edge" aria-hidden="true"></span>
         <div class="prompt-header">
-          <h3 class="label" id="prompt-heading"><span aria-hidden="true">&gt;_</span> Draft in chat (optional)</h3>
+          <h3 class="label" id="prompt-heading"><span aria-hidden="true">&gt;_</span> Profile prompt</h3>
           <button class="button copy-button" id="copy-prompt" type="button" hidden>Copy prompt</button>
         </div>
-        <p class="prompt-intro">Start with a Markdown draft in your own AI. Use it when you’re ready to build the full profile with the starter.</p>
+        <p class="prompt-intro">Use this in chat to draft your Markdown, or in your copy of the GitHub starter to build the full profile.</p>
         <pre id="build-prompt">Assemble me a profile.md from my CV and the work I’ve shared. Use https://benohanlon.md/benohanlon.md as a worked example for the structure.
 
 Use my own material to write the profile and link to the evidence behind it. Give readers a few starting choices so they can explore it as a Choose Your Own Adventure.
 
-Ask me if anything important is missing, then give me the Markdown to review.</pre>
+Ask me if anything important is missing. If I’m working in the GitHub starter, read its AGENTS.md and the instructions in profile.md, then use the starter to build the pages. Give me the Markdown to review before publishing.</pre>
         <div class="prompt-openers" role="group" aria-label="Open the prompt in your AI">
           <span>Open in</span>
           <a href="https://chatgpt.com/" data-prefill target="_blank" rel="noopener" aria-label="Open in ChatGPT" title="ChatGPT">
