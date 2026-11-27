@@ -766,6 +766,7 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 .instructions strong { color: var(--ink); }
 .domain-note { color: var(--secondary); font-size: 0.94rem; }
 .domain-note code { color: var(--ink); }
+.kit-help { margin-top: 0.55rem; }
 .profile-maintenance { margin-top: 1.2rem; color: var(--ink); font-size: 1rem; }
 
 .prompt-panel {
@@ -921,8 +922,15 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
   }
   .site-pages { grid-column: 1; gap: 0.45rem; }
   .site-nav .page-tab { padding-inline: 0.2rem; }
-  .site-utilities { grid-column: 1; grid-row: 2; gap: 0.7rem; padding-inline-start: 0.2rem; border: 0; }
-  .site-nav a.more-tab { grid-column: 2; grid-row: 1 / span 2; padding-inline: 0.65rem; align-self: start; }
+  .site-utilities {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    gap: 0.25rem 0.75rem;
+    flex-wrap: wrap;
+    padding-inline-start: 0.2rem;
+    border: 0;
+  }
+  .site-nav a.more-tab { grid-column: 2; grid-row: 1; padding-inline: 0.65rem; }
   .more-tab span { display: none; }
   .credit-group:last-child { justify-content: flex-start; }
   .credit-brand { gap: 0.5rem; font-size: 0.95rem; }
