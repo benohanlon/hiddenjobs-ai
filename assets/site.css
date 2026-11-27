@@ -20,11 +20,11 @@
   --royal: #163cba;
   --blue: #102f98;
   --navy: #091c5b;
-  --chrome: #0e2a86;
+  --chrome: #153393;
   --line: #7193ef66;
-  --cut-depth: 0.35rem;
-  --cut-wall-light: #5a7bd2;
-  --cut-wall-dark: #263e8b;
+  --cut-depth: 0.55rem;
+  --cut-wall-light: #6b8aef;
+  --cut-wall-dark: #28448e;
   --cut-wall: linear-gradient(var(--cut-wall-light), var(--cut-wall-dark));
   --cut-shadow: inset 0 0.7rem 0.85rem -0.55rem #02091ac9;
   --white: #fff;
@@ -623,31 +623,62 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 
 .cut-band {
   --cut-face: var(--blue);
-  --cut-shape: polygon(
-    0 0, 100% 0, 100% 47%, 82% 47%, 82% 80%, 66% 80%, 66% 54%,
-    45% 54%, 45% 100%, 25% 100%, 25% 70%, 11% 70%, 11% 34%, 0 34%
-  );
-  --cut-height: 0.95rem;
+  --cut-height: 1.4rem;
   position: relative;
   isolation: isolate;
   padding-block-start: calc(var(--cut-height) + var(--cut-depth));
-  background: var(--navy);
+  background: linear-gradient(180deg, #060f32, var(--navy) 2.9rem, #0c215f);
   box-shadow: var(--cut-shadow);
 }
 
-/* Offset the same cut to expose the thickness of the upper sheet. */
-.cut-band::before, .cut-band::after {
-  content: "";
+.cut-edge {
   position: absolute;
   z-index: -1;
   inset: 0 0 auto;
   height: var(--cut-height);
-  clip-path: var(--cut-shape);
   pointer-events: none;
+  filter: drop-shadow(1px 2px 1px #02091ab0) drop-shadow(2px 4px 3px #02091a80);
 }
 
-.cut-band::before { inset-block-start: var(--cut-depth); background: var(--cut-wall); }
-.cut-band::after { background: var(--cut-face); }
+/* The wrapper casts the shadow of both clipped faces onto the recess. */
+.cut-edge::before, .cut-edge::after {
+  --cut-outset: 0px;
+  --cut-extension: 0px;
+  --cut-level-1: calc(var(--cut-height) * 0.32 + var(--cut-extension));
+  --cut-level-2: calc(var(--cut-height) * 0.41 + var(--cut-extension));
+  --cut-level-3: calc(var(--cut-height) * 0.53 + var(--cut-extension));
+  --cut-level-4: calc(var(--cut-height) * 0.64 + var(--cut-extension));
+  --cut-level-5: calc(var(--cut-height) * 0.78 + var(--cut-extension));
+  --cut-level-6: calc(var(--cut-height) + var(--cut-extension));
+  --cut-step-1: calc(11% + var(--cut-outset));
+  --cut-step-2: calc(25% + var(--cut-outset));
+  --cut-step-3: calc(45% + var(--cut-outset));
+  --cut-step-4: calc(66% + var(--cut-outset));
+  --cut-step-5: calc(82% + var(--cut-outset));
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(
+    0 0, 100% 0, 100% var(--cut-level-2),
+    var(--cut-step-5) var(--cut-level-2), var(--cut-step-5) var(--cut-level-5),
+    var(--cut-step-4) var(--cut-level-5), var(--cut-step-4) var(--cut-level-3),
+    var(--cut-step-3) var(--cut-level-3), var(--cut-step-3) var(--cut-level-6),
+    var(--cut-step-2) var(--cut-level-6), var(--cut-step-2) var(--cut-level-4),
+    var(--cut-step-1) var(--cut-level-4), var(--cut-step-1) var(--cut-level-1),
+    0 var(--cut-level-1)
+  );
+}
+
+.cut-edge::before {
+  --cut-outset: 3px;
+  --cut-extension: var(--cut-depth);
+  inset-block-end: calc(-1 * var(--cut-depth));
+  background: var(--cut-wall);
+}
+
+.cut-edge::after {
+  background: linear-gradient(180deg, var(--cut-face) 37%, color-mix(in srgb, var(--cut-face), #6489f4 18%));
+}
 
 .project-credits {
   --cut-face: var(--chrome);
@@ -687,7 +718,7 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 .domain-note code { color: var(--ink); }
 
 .prompt-panel {
-  --cut-height: 0.55rem;
+  --cut-height: 0.7rem;
   border-inline: 1px solid var(--cut-wall-dark);
   border-bottom: 2px solid var(--cut-wall-light);
   color: #e4ebff;
@@ -802,8 +833,8 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
     justify-content: space-between;
     min-height: 3rem;
     padding-inline: clamp(1.125rem, 4vw, 2rem);
-    border-top: var(--cut-depth) solid var(--cut-wall-dark);
-    background: var(--cut-wall) top / 100% 1px no-repeat, var(--navy);
+    border-top: 0.35rem solid var(--cut-wall-dark);
+    background: linear-gradient(180deg, #060f32, var(--navy) 1.5rem);
     box-shadow: var(--cut-shadow);
     color: var(--white);
     font: 700 1rem/1.25 var(--mono);
