@@ -891,7 +891,8 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
   width: 100%;
   border: 0;
   background: transparent;
-  color-scheme: light;
+  /* Keep browser darkening from changing the embed before the colour filter. */
+  color-scheme: only light;
   /* Lighten the field and keep the orange controls and dark text readable on the blue panel. */
   filter: brightness(.92) contrast(2.28) invert(1) hue-rotate(177deg) saturate(.87);
 }
