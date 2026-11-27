@@ -19,7 +19,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://hiddenjobs.ai/assets/profile-md-share.jpg?v=parcel">
   <meta name="twitter:image:alt" content="Create your own profile.md. A Choose Your Own Adventure for your CV and best work. An open delivery carton sits beside the AI Builders LCR and Hermes Agent logos.">
-  <link rel="stylesheet" href="../assets/site.css?v=socials-newsletter">
+  <link rel="stylesheet" href="../assets/site.css?v=launch-review">
   <script src="../assets/profile.js?v=workbench-depth" defer></script>
   <title>Create your own CYOA profile.md | Hidden Jobs</title>
 </head>
@@ -91,9 +91,9 @@
       <span class="label">Socials</span>
       <a href="https://luma.com/aibuilderslcr" aria-label="AI Builders LCR events on Luma">
         <img src="../assets/luma-icon.ico" alt="" width="15" height="15">
-        Luma
+        LCR on Luma
       </a>
-      <a href="https://x.com/benohanlon" aria-label="Ben O’Hanlon on X">X</a>
+      <a href="https://x.com/benohanlon" aria-label="Ben O’Hanlon on X">Ben on X</a>
     </div>
   </nav>
 
@@ -108,21 +108,18 @@
         </div>
         <div class="shell hero-inner">
           <div class="hero-copy">
-            <nav class="kit-ruler" aria-label="Assembly steps">
-              <a href="#make-yours"><span aria-hidden="true">01</span> Copy</a>
-              <a href="#prompt-profile"><span aria-hidden="true">02</span> Prompt</a>
-              <a href="#assemble-profile"><span aria-hidden="true">03</span> Assemble</a>
-              <a href="#publish-profile"><span aria-hidden="true">04</span> Share</a>
-            </nav>
             <p class="label kit-label">Self-assembly kit</p>
             <h1>Create your own<br><span>profile.md</span></h1>
-            <p class="hero-summary">Turn your CV and best work into one link people can explore with their own AI.</p>
-            <p class="hero-context">The classic Choose Your Own Adventure series applied to your resume and body of work.</p>
-            <a class="button button-primary" href="#make-yours">Make my profile</a>
+            <p class="hero-summary">Share one link so people can ask about your work in their own AI.</p>
+            <p class="hero-context">The classic Choose Your Own Adventure format, built from your CV and body of work.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#make-yours">Make my profile</a>
+              <a class="hero-example-link" href="https://benohanlon.md/" target="_blank" rel="noopener">Test the worked example <span aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
+            </div>
           </div>
 
           <div class="workshop-example">
-            <a class="example" href="https://benohanlon.md/" aria-label="Test it with Ben’s worked example">
+            <a class="example" href="https://benohanlon.md/" target="_blank" rel="noopener" aria-label="Test Ben’s worked example (opens in a new tab)">
               <span class="tag-cord" aria-hidden="true"></span>
               <span class="example-tag">
                 <span class="tag-eyelet" aria-hidden="true"></span>
@@ -132,7 +129,7 @@
                 <span class="tag-link">Test it</span>
               </span>
             </a>
-            <a class="box-example" href="https://benohanlon.md/" aria-label="Test it with Ben’s worked example">
+            <a class="box-example" href="https://benohanlon.md/" target="_blank" rel="noopener" aria-label="Test Ben’s worked example (opens in a new tab)">
               <span class="box-scene">
                 <span class="box-label">
                   <span class="shelf-badge" aria-hidden="true"></span>
@@ -165,7 +162,10 @@
             <li>How could you connect me to your network?</li>
             <li>Where would we have mutual interests or shared communities?</li>
           </ul>
-          <p class="reader-feedback"><a href="https://github.com/benohanlon/profile-md-template/discussions/categories/show-and-tell">Tried it? Tell us what you asked and where you got stuck.</a></p>
+          <div class="reader-feedback" id="feedback">
+            <p>What did you ask, and did you find something useful? Tell us if you got stuck.</p>
+            <a href="https://github.com/benohanlon/profile-md-template/discussions/categories/show-and-tell">Give feedback on GitHub <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
       </div>
     </section>
@@ -175,8 +175,14 @@
         <h2 id="make-heading">Assemble your profile</h2>
         <p class="make-intro">The starter builds your web profile, adventure page and AI quickstart from one Markdown file.</p>
         <a class="button button-primary starter-button" href="https://github.com/benohanlon/profile-md-template">Use the GitHub starter</a>
+        <nav class="kit-ruler" aria-label="Assembly steps">
+          <a href="#copy-profile"><span aria-hidden="true">01</span> Copy</a>
+          <a href="#prompt-profile"><span aria-hidden="true">02</span> Prompt</a>
+          <a href="#assemble-profile"><span aria-hidden="true">03</span> Assemble</a>
+          <a href="#publish-profile"><span aria-hidden="true">04</span> Share</a>
+        </nav>
         <ol class="instructions">
-          <li><strong>Copy.</strong> Choose <strong>Use this template</strong> on GitHub and open your copy with an AI that can edit its files.</li>
+          <li id="copy-profile"><strong>Copy.</strong> Choose <strong>Use this template</strong> on GitHub and open your copy with an AI that can edit its files.</li>
           <li id="prompt-profile"><strong>Prompt.</strong> Give your AI your CV and work samples, then <a href="#draft-profile">copy the profile prompt</a> into your AI.</li>
           <li id="assemble-profile"><strong>Assemble.</strong> Review the Markdown and preview the generated pages. Try a real question and follow the answer to your evidence.</li>
           <li id="publish-profile"><strong>Share.</strong> Share the Markdown directly or <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site">publish the site with GitHub Pages</a> and send the link. Before publishing, choose what to make public and set the terms for your own material in your README.</li>
