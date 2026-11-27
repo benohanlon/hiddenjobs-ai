@@ -29,11 +29,13 @@ if (workshop.dataset.render === "geometry") {
 
   function moveWorkbench() {
     pendingFrame = 0;
-    const mobile = mobileLayout.matches;
-    const { top, height } = (mobile ? scene : example).getBoundingClientRect();
-    const distance = mobile ? window.innerHeight - top : window.scrollY;
-    const progress = Math.min(1, Math.max(0, distance / height));
-    const offset = mobile ? 16 * (1 - progress) : 8 * progress;
+    const frame = mobileLayout.matches ? scene.getBoundingClientRect() : null;
+    const viewport = window.innerHeight;
+    const distance = frame ? viewport - frame.top : window.scrollY;
+    const travel = frame ? viewport : Math.min(viewport, 360);
+    const amplitude = frame ? Math.min(36, frame.height * 0.09) : 18;
+    const progress = Math.min(1, Math.max(0, distance / travel));
+    const offset = amplitude * progress;
     const drift = `${offset.toFixed(2)}px`;
     if (example.style.getPropertyValue("--workbench-drift") !== drift) {
       example.style.setProperty("--workbench-drift", drift);
