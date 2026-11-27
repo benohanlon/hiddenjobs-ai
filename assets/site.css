@@ -83,9 +83,59 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 
 .label, .site-nav, .button { font-family: var(--mono); font-size: 0.875rem; }
 .label { font-weight: 650; }
-.site-nav { display: flex; flex-wrap: wrap; gap: 0.45rem 1.75rem; }
+.site-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 0.65rem 1rem; }
+.site-pages, .site-utilities { display: flex; align-items: center; gap: 0.5rem; }
+.site-nav .page-tab, .site-utilities a { display: inline-flex; align-items: center; gap: 0.35rem; }
+.site-nav .page-tab { padding: 0.4rem 0.65rem; white-space: nowrap; border-bottom: 2px solid transparent; }
+.site-nav .page-tab[aria-current="page"] { border-bottom-color: var(--accent); background: #ffffff12; text-decoration: none; }
+.site-utilities { gap: 0.85rem; padding-inline-start: 0.9rem; border-inline-start: 1px solid var(--line); }
+.site-utilities img { flex: 0 0 auto; object-fit: contain; }
 .site-nav a { padding-block: 0.35rem; color: var(--secondary); text-decoration: none; }
 .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--white); text-decoration: underline; }
+
+.site-nav a.more-tab {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem 0.4rem;
+  color: #172857;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.more-tab::before,
+.more-tab::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.more-tab::before {
+  inset: auto -0.2rem 0 0.18rem;
+  height: 0.36rem;
+  background: #081748;
+  box-shadow: 0 3px 5px #040d3a8c;
+}
+
+.more-tab::after {
+  inset: 0 0.2rem 0.1rem 0;
+  clip-path: polygon(0.7rem 0, calc(100% - 0.8rem) 0, 100% 0.7rem, 100% 100%, 0 100%, 0 0.7rem);
+  background:
+    repeating-linear-gradient(12deg, #ffffff00 0 1px, #7864440b 1px 2px, #ffffff00 2px 4px),
+    linear-gradient(180deg, #fffdf5 0%, #f4efdf 83%, #cec2a9 84%, #e4d7bf 91%, #8f816a 100%);
+}
+
+.contributor-strip { border-top: 1px solid var(--line); background: #122b7d; }
+.contributor-strip-inner { display: flex; align-items: center; gap: 0.5rem; min-height: 2.2rem; }
+.contributor-strip .label { color: var(--secondary); font-size: 0.74rem; }
+.contributor-avatar { display: inline-flex; }
+.contributor-avatar img {
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #32456166;
+}
 
 .hero {
   overflow: hidden;
@@ -716,6 +766,7 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 .instructions strong { color: var(--ink); }
 .domain-note { color: var(--secondary); font-size: 0.94rem; }
 .domain-note code { color: var(--ink); }
+.profile-maintenance { margin-top: 1.2rem; color: var(--ink); font-size: 1rem; }
 
 .prompt-panel {
   --cut-height: 0.7rem;
@@ -769,6 +820,19 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 .footer-inner h2 { margin-bottom: 0.2rem; color: var(--ink); font-size: 1.125rem; }
 .footer-support { gap: 0.55rem; border-color: #9ab3fa; color: var(--ink); }
 .footer-support:hover { background: #162f91; }
+.reader-choices .reader-feedback { margin-top: 0.8rem; font: 0.81rem/1.5 var(--mono); }
+.reader-feedback a { color: var(--secondary); }
+
+.more-copy { max-width: 34rem; }
+#more { scroll-margin-top: 1rem; }
+.footer-project-links {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.25rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--line);
+}
 
 @media (max-width: 60rem) {
   .hero-inner, .reader-path, .make-section { grid-template-columns: minmax(0, 1fr); }
@@ -848,7 +912,18 @@ a { color: var(--ink); text-underline-offset: 0.22em; }
 @media (max-width: 32rem) {
   .shell { width: calc(100% - 2.25rem); }
   .header-inner { align-items: flex-start; flex-direction: column; padding-block: 0.85rem; }
-  .site-nav { gap: 0.25rem 1rem; }
+  .site-nav {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    width: 100%;
+    gap: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  .site-pages { grid-column: 1; gap: 0.45rem; }
+  .site-nav .page-tab { padding-inline: 0.2rem; }
+  .site-utilities { grid-column: 1; grid-row: 2; gap: 0.7rem; padding-inline-start: 0.2rem; border: 0; }
+  .site-nav a.more-tab { grid-column: 2; grid-row: 1 / span 2; padding-inline: 0.65rem; align-self: start; }
+  .more-tab span { display: none; }
   .credit-group:last-child { justify-content: flex-start; }
   .credit-brand { gap: 0.5rem; font-size: 0.95rem; }
   .credit-byline { margin-inline-start: 1.3rem; font-size: 0.72rem; }
